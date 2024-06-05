@@ -1,0 +1,31 @@
+{{#if courses.length}}
+  <div class="row">
+    {{#each courses}}
+      <div class="col s6">
+        <div class="card">
+          <div class="card-image">
+            <img src="{{img}}" alt="{{title}}">
+          </div>
+          <div class="card-content">
+            <span class="card-title">{{title}}</span>
+            <p class="price">{{price}}</p>
+            <p class="description">{{description}}</p> <!-- Добавлено описание курса -->
+          </div>
+          <div class="card-action actions">
+            <a href="/courses/{{id}}" target="_blank">Открыть курс</a>
+            <a href="/courses/{{id}}/edit?allow=true">Редактировать</a>
+            <form action="/card/add" method="POST">
+              <input type="hidden" name="id" value="{{id}}">
+              <button type="submit" class="btn btn-primary">Купить</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      {{#if @index_even}}
+        </div><div class="row">
+      {{/if}}
+    {{/each}}
+  </div>
+{{else}}
+  <p>Курсов пока нет</p>
+{{/if}}

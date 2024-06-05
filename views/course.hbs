@@ -1,0 +1,41 @@
+<style>
+  .course {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .course h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .course img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .course .price {
+    font-size: 20px;
+    color: #f00;
+    margin-bottom: 20px;
+  }
+
+ 
+
+</style>
+
+<div class="course">
+    <h1>{{course.title}}</h1>
+    <img src="{{course.img}}" alt="{{course.title}}">
+    <p class="price big">{{course.price}}</p>
+    <p>{{course.description}}</p> <!-- Добавлено описание товара -->
+</div>
+

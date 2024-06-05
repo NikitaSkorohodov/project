@@ -1,0 +1,36 @@
+<nav class="nav2">
+    
+    <div class="nav-wrapper">
+        <a href="/" class="brand-logo" style="margin-right: 20px;">
+    <img src="https://static.vecteezy.com/system/resources/previews/023/961/503/non_2x/book-logo-template-design-education-icon-sign-and-symbol-vector.jpg" alt="Логотип приложения курсов" style="width: 50px; height: 50px; border-radius: 50%;">
+</a>
+
+
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            {{#if isHome}}
+            <li class="active"><a href="/">Главная</a></li>
+            {{else}}
+            <li><a href="/">Главная</a></li>
+            {{/if}}
+            
+            {{#if isCourses}}
+            <li class="active"><a href="/courses">Курсы</a></li>
+            {{else}}
+            <li><a href="/courses">Курсы</a></li>
+            {{/if}}
+
+            {{#if isAdd}}
+            <li class="active"><a href="/add">Добавить курс</a></li>
+            {{else}}
+            <li><a href="/add">Добавить курс</a></li>
+            {{/if}}
+            {{#if isCard}}
+                <li class="active"><a href="/card">Корзина</a></li>
+            
+            {{else}}
+                <li><a href="/card">Корзина</a></li>
+                {{/if}}
+            
+        </ul>
+    </div>
+</nav>
