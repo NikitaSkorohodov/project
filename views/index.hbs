@@ -1,4 +1,104 @@
+<style>
+    .row .col.s6 {
+    width: 400px;
+    margin-left: auto;
+    left: auto;
+    right: auto;
+}
+.card .card-image img {
+    height: 300px;
+    display: block;
+    border-radius: 2px 2px 0 0;
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    object-fit: cover;
+}
+.row {
+    margin-left: 30px; /* Добавляем отступ слева */
+}
 
-    <h1>Добро пожаловать</h1>
 
-    <p>Здесь только лучшие курсы</p>
+</style><h1>Добро пожаловать</h1>
+
+<p>Здесь только лучшие курсы</p>
+<div class="carousel-container">
+  <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
+  <div class="carousel">
+    <div class="carousel-slide">
+      <img src="https://ee2.pigugroup.eu/categories/0/62/62/for_listing/3c816bdde61c36d92b73a2934e16f54e_large.jpg" alt="Slide 1">
+    </div>
+    <div class="carousel-slide">
+      <img src="https://ee2.pigugroup.eu/categories/0/94/94/for_listing/1cd06bd18d3ff84b20819ecceaecfcdf_large.jpg" alt="Slide 2">
+    </div>
+    <div class="carousel-slide">
+      <img src="https://ee2.pigugroup.eu/categories/0/24/24/for_listing/71907835b7651cb62af7b79c3b464cb8_large.jpg" alt="Slide 3">
+    </div>
+  </div>
+  <button class="next" onclick="plusSlides(1)">&#10095;</button>
+</div>
+<script type="text/javascript">
+let slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function showSlides(n) {
+  const slides = document.getElementsByClassName("carousel-slide");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  slides[slideIndex-1].style.display = "block";
+}
+
+// Добавляем автоматическую прокрутку каждые 3 секунды
+let slideInterval = setInterval(function() { plusSlides(1); }, 3000);
+
+// При наведении на слайдер останавливаем автоматическую прокрутку
+document.querySelector('.carousel-container').addEventListener('mouseenter', function() {
+    clearInterval(slideInterval);
+});
+
+// При уходе с слайдера возобновляем автоматическую прокрутку
+document.querySelector('.carousel-container').addEventListener('mouseleave', function() {
+    slideInterval = setInterval(function() { plusSlides(1); }, 3000);
+});
+</script>
+<h2>Добро пожаловать</h2>
+{{#if courses.length}}
+  <div class="row">
+    {{#each courses}}
+      <div class="col s6">
+        <div class="card">
+          <div class="card-image">
+            <img src="{{img}}" alt="{{title}}">
+          </div>
+          <div class="card-content">
+            <span class="card-title">{{title}}</span>
+            <p class="price">{{price}}</p>
+          </div>
+          <div class="card-action actions">
+            <a href="/courses/{{id}}" target="_blank">Открыть курс</a>
+            
+            <form action="/card/add" method="POST">
+              <input type="hidden" name="id" value="{{id}}">
+              <button type="submit" class="btn btn-primary">Купить</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      {{#if @index_even}}
+        </div><div class="row">
+      {{/if}}
+    {{/each}}
+  </div>
+{{else}}
+  <p>Курсов пока нет</p>
+{{/if}}

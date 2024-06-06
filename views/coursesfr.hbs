@@ -11,11 +11,11 @@
             <p class="price">{{price}}</p>
           </div>
           <div class="card-action actions">
-            <a href="/courses/{{id}}" target="_blank">Открыть курс</a>
-            <a href="/courses/{{id}}/edit?allow=true">Редактировать</a>
+            <a href="/courses/{{id}}" target="_blank">Ouvrir le cours</a>
+            <a href="/courses/{{id}}/edit?allow=true">Modifier</a>
             <form action="/card/add" method="POST">
               <input type="hidden" name="id" value="{{id}}">
-              <button type="submit" class="btn btn-primary">Купить</button>
+              <button type="submit" class="btn btn-primary">Acheter</button>
             </form>
           </div>
         </div>
@@ -26,5 +26,5 @@
     {{/each}}
   </div>
 {{else}}
-  <p>Курсов пока нет</p>
+  <p>Aucun cours pour le moment</p>
 {{/if}}

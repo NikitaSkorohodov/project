@@ -1,36 +1,45 @@
 <nav class="nav2">
-    
-    <div class="nav-wrapper">
-        <a href="/" class="brand-logo" style="margin-right: 20px;">
-    <img src="https://static.vecteezy.com/system/resources/previews/023/961/503/non_2x/book-logo-template-design-education-icon-sign-and-symbol-vector.jpg" alt="Логотип приложения курсов" style="width: 50px; height: 50px; border-radius: 50%;">
-</a>
+  <div class="nav-wrapper">
+    <a href="/" class="brand-logo" style="margin-right: 20px; display: flex; align-items: center;">
+      <img src="https://static.vecteezy.com/system/resources/previews/023/961/503/non_2x/book-logo-template-design-education-icon-sign-and-symbol-vector.jpg" alt="Логотип приложения курсов" style="width: 50px; height: 50px; border-radius: 50%; margin-left: 20px; margin-bottom: -100px;">
+    </a>
 
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li>
+        <a href="http://localhost:3000/courses/search?q=JavaScript" class="circle-search" style="display: flex; align-items: center;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/VisualEditor_-_Icon_-_Search-big_-_white.svg/1200px-VisualEditor_-_Icon_-_Search-big_-_white.svg.png" alt="Profile" style="width: 50px; height: 50px; border-radius: 50%; margin-bottom: -100px;">
+        </a>
+      </li>
+      {{#if isHome}}
+      <li class="active"><a href="/">MAIN</a></li>
+      {{else}}
+      <li><a href="/">MAIN</a></li>
+      {{/if}}
+      
+      {{#if isCourses}}
+      <li class="active"><a href="/courses">PRODUCTS</a></li>
+      {{else}}
+      <li><a href="/courses">PRODUCTS</a></li>
+      {{/if}}
 
-        <ul id="nav-mobile" class="right hide-on-med-and-down">
-            {{#if isHome}}
-            <li class="active"><a href="/">Главная</a></li>
-            {{else}}
-            <li><a href="/">Главная</a></li>
-            {{/if}}
-            
-            {{#if isCourses}}
-            <li class="active"><a href="/courses">Курсы</a></li>
-            {{else}}
-            <li><a href="/courses">Курсы</a></li>
-            {{/if}}
+      {{#if isAdd}}
+      <li class="active"><a href="/add">ADD PRODUCTS</a></li>
+      {{else}}
+      <li><a href="/add">ADD PRODUCTS</a></li>
+      {{/if}}
+      
+      {{#if isCard}}
+      <li class="active"><a href="/card">CARD</a></li>
+      {{else}}
+      <li><a href="/card">CARD</a></li>
+      {{/if}}
 
-            {{#if isAdd}}
-            <li class="active"><a href="/add">Добавить курс</a></li>
-            {{else}}
-            <li><a href="/add">Добавить курс</a></li>
-            {{/if}}
-            {{#if isCard}}
-                <li class="active"><a href="/card">Корзина</a></li>
-            
-            {{else}}
-                <li><a href="/card">Корзина</a></li>
-                {{/if}}
-            
-        </ul>
-    </div>
+      <!-- Добавляем круглую картинку -->
+      <li>
+        <a href="courses/fr" class="circle-img" style="display: flex; align-items: center;">
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARMAAAC3CAMAAAAGjUrGAAAAFVBMVEX///8AJlTOESYAGU16gpXefILNABnwlnA6AAAA/klEQVR4nO3QSQ0AIAADsHH6l4yKPUhaCc2oWTs9586aOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHy4ckD5KrN4eD2boIAAAAASUVORK5CYII=" alt="Profile" style="width: 50px; height: 50px; border-radius: 50%; margin-bottom: -100px;">
+        </a>
+      </li>
+    </ul>
+  </div>
 </nav>
