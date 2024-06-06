@@ -22,9 +22,9 @@
 }
 
 
-</style><h1>Добро пожаловать</h1>
+</style><h1>Welcome</h1>
 
-<p>Здесь только лучшие курсы</p>
+<p>Only the best technology is here</p>
 <div class="carousel-container">
   <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
   <div class="carousel">
@@ -71,7 +71,7 @@ document.querySelector('.carousel-container').addEventListener('mouseleave', fun
     slideInterval = setInterval(function() { plusSlides(1); }, 3000);
 });
 </script>
-<h2>Добро пожаловать</h2>
+<h2>the newest technology!</h2>
 {{#if courses.length}}
   <div class="row">
     {{#each courses}}
@@ -85,11 +85,11 @@ document.querySelector('.carousel-container').addEventListener('mouseleave', fun
             <p class="price">{{price}}</p>
           </div>
           <div class="card-action actions">
-            <a href="/courses/{{id}}" target="_blank">Открыть курс</a>
+            <a href="/courses/{{id}}" target="_blank">more details</a>
             
             <form action="/card/add" method="POST">
               <input type="hidden" name="id" value="{{id}}">
-              <button type="submit" class="btn btn-primary">Купить</button>
+              <button type="submit" class="btn btn-primary">Buy</button>
             </form>
           </div>
         </div>
@@ -100,5 +100,5 @@ document.querySelector('.carousel-container').addEventListener('mouseleave', fun
     {{/each}}
   </div>
 {{else}}
-  <p>Курсов пока нет</p>
+  <p>This technology is not yet available</p>
 {{/if}}
