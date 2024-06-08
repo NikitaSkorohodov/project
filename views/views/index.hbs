@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Language Switcher</title>
+  <style>
+    .row .col.s6 {
+      width: 400px;
+      margin-left: auto;
+      left: auto;
+      right: auto;
+    }
+    .card .card-image img {
+      height: 300px;
+      display: block;
+      border-radius: 2px 2px 0 0;
+      position: relative;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      object-fit: cover;
+    }
+    .row {
+      margin-left: 30px; /* Lisa vasakpoolne tühik */
+    }
+  </style>
+</head>
+<body>
+  <h1 id="welcome">Welcome</h1>
+  <p id="description">Only the best technology is here</p>
+  <button onclick="changeLanguage('en')">English</button>
+  <button onclick="changeLanguage('et')">Eesti</button>
+
+  <div class="carousel-container">
+    <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
+    <div class="carousel">
+      <div class="carousel-slide">
+        <img src="https://ee2.pigugroup.eu/categories/0/62/62/for_listing/3c816bdde61c36d92b73a2934e16f54e_large.jpg" alt="Slide 1">
+      </div>
+      <div class="carousel-slide">
+        <img src="https://ee2.pigugroup.eu/categories/0/94/94/for_listing/1cd06bd18d3ff84b20819ecceaecfcdf_large.jpg" alt="Slide 2">
+      </div>
+      <div class="carousel-slide">
+        <img src="https://ee2.pigugroup.eu/categories/0/24/24/for_listing/71907835b7651cb62af7b79c3b464cb8_large.jpg" alt="Slide 3">
+      </div>
+    </div>
+    <button class="next" onclick="plusSlides(1)">&#10095;</button>
+  </div>
+
+  <h2 id="newest_technology">the newest technology!</h2>
+
+  {{#if courses.length}}
+    <div class="row">
+      {{#each courses}}
+        <div class="col s6">
+          <div class="card">
+            <div class="card-image">
+              <img src="{{img}}" alt="{{title}}">
+            </div>
+            <div class="card-content">
+              <span class="card-title">{{title}}</span>
+              <p class="price">{{price}}</p>
+            </div>
+            <div class="card-action actions">
+              <a href="/courses/{{id}}" target="_blank" class="more-details">more details</a>
+              
+              <form action="/card/add" method="POST">
+                <input type="hidden" name="id" value="{{id}}">
+                <button type="submit" class="btn btn-primary buy">Buy</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        {{#if @index_even}}
+          </div><div class="row">
+        {{/if}}
+      {{/each}}
+    </div>
+  {{else}}
+    <p id="not_available">This technology is not yet available</p>
+  {{/if}}
+
+  <script>
+    async function fetchTranslation(language) {
+      try {
+        const response = await fetch(`${language}.json`);
+        if (!response.ok) {
+          throw new Error(`Failed to load ${language} translations`);
+        }
+        const translations = await response.json();
+        return translations;
+      } catch (error) {
+        console.error('Error fetching translations:', error);
+        return null;
+      }
+    }
+
+    function applyTranslations(translations) {
+      if (!translations) return;
+
+      document.getElementById('welcome').innerText = translations.welcome;
+      document.getElementById('description').innerText = translations.description;
+      document.getElementById('newest_technology').innerText = translations.newest_technology;
+
+      document.querySelectorAll('.more-details').forEach((element) => {
+        element.innerText = translations.more_details;
+      });
+
+      document.querySelectorAll('.buy').forEach((element) => {
+        element.innerText = translations.buy;
+      });
+
+      document.getElementById('not_available').innerText = translations.not_available;
+    }
+
+    async function changeLanguage(language) {
+      const translations = await fetchTranslation(language);
+      applyTranslations(translations);
+    }
+  </script>
+</body>
+</html>

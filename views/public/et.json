@@ -1,0 +1,13 @@
+{
+  "welcome": "Tere tulemast",
+  "description": "Siin on ainult parim tehnoloogia",
+  "newest_technology": "kõige uuem tehnoloogia!",
+  "more_details": "rohkem detaile",
+  "buy": "Osta",
+  "edit": "Muuda", 
+  "not_available": "See tehnoloogia pole veel saadaval",
+  "main": "PEAMINE",
+  "products": "TOOTED",
+  "add_products": "TOODETE LISAMINE",
+  "card": "KAART"
+}
