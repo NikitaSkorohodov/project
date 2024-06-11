@@ -1,30 +1,46 @@
-<h1>{{__ 'card'}}</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Код с перенаправлением</title>
+</head>
+<body>
+  <div id="card">
+    <table>
+      <thead>
+        <tr>
+          <th>{{__ 'title'}}</th>
+          <th>{{__ 'price'}}</th>
+          <th>{{__ 'Actions'}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each courses}}
+          <tr>
+            <td>{{this.title}}</td>
+            <td>{{this.price}}</td>
+            <td>
+              <button class="btn btm-small js-remove" data-id="{{this._id}}">{{__ 'delete'}}</button>
+              
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    <p><strong>{{__ 'Total Price'}}:</strong> <span class="price">{{totalPrice}}</span></p>
+  </div>
 
-<div id="card">
-  {{#if courses.length}}
-  <table>
-    <thead>
-      <tr>
-        <th>{{__ 'title'}}</th>
-        <th>{{__ 'quantity'}}</th>
-        <th>{{__ 'Actions'}}</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each courses}}
-      <tr>
-        <td>{{title}}</td>
-        <td>{{count}}</td>
-        <td>
-          <button class="btn btm-small js-remove" data-id="{{id}}">{{__ 'delete'}}</button>
-        </td>
-      </tr>
-      {{/each}}
-    </tbody>
-  </table>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('.js-remove').click(function(event) {
 
-  <p><strong>{{__ 'Price'}}:</strong> <span class="price">{{price}}</span></p>
-  {{else}}
-  <p>{{__ 'Cart is empty'}}</p>
-  {{/if}}
-</div>
+        var courseId = $(this).data('id');
+        window.location.href = 'http://localhost:3000/card';
+
+      });
+    });
+  </script>
+</body>
+</html>

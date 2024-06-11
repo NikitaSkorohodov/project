@@ -1,81 +1,49 @@
-const path = require('path');
-const fs = require('fs');
+const mongoose = require('mongoose');
 
-const p = path.join(
-  path.dirname(require.main.filename),
-  'data',
-  'card.json'
-);
-
-class Card {
-  static async add(course) {
-    const card = await Card.fetch();
-
-    const idx = card.courses.findIndex(c => c.id === course.id);
-    const candidate = card.courses[idx];
-
-    if (candidate) {
-      candidate.count++;
-      card.courses[idx] = candidate;
-    } else {
-      course.count = 1;
-      card.courses.push(course);
+const cardSchema = new mongoose.Schema({
+  courses: [
+    {
+      title: String,
+      price: Number,
+      img: String
     }
-
-    card.price += +course.price;
-
-    return new Promise((resolve, reject) => {
-      fs.writeFile(p, JSON.stringify(card), err => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve();
-        }
-      });
-    });
+  ],
+  totalPrice: {
+    type: Number,
+    default: 0
   }
+});
 
-  static async remove(id) {
-    const card = await Card.fetch();
+cardSchema.statics.fetch = async function() {
+  return this.findOne();
+};
 
-    const idx = card.courses.findIndex(c => c.id === id);
-    if (idx === -1) {
-      return card; // Ничего не найдено для удаления
-    }
-
-    const course = card.courses[idx];
-
-    if (course.count === 1) {
-      card.courses = card.courses.filter(c => c.id !== course.id);
-    } else {
-      card.courses[idx].count--;
-    }
-
-    card.price -= course.price;
-
-    return new Promise((resolve, reject) => {
-      fs.writeFile(p, JSON.stringify(card), err => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(card);
-        }
-      });
-    });
+cardSchema.statics.add = async function(course) {
+  let card = await this.findOne();
+  if (!card) {
+    card = new this();
   }
+  card.courses.push(course);
+  card.totalPrice += course.price;
+  await card.save();
+  return card;
+};
 
-  static async fetch() {
-    return new Promise((resolve, reject) => {
-      fs.readFile(p, 'utf-8', (err, content) => {
-        if (err) {
-          resolve({ courses: [], price: 0 });
-        } else {
-          resolve(JSON.parse(content));
-        }
-      });
-    });
+cardSchema.statics.remove = async function(courseId) {
+  let card = await this.findOne();
+  if (!card) {
+    throw new Error("Card not found");
   }
-}
+  const index = card.courses.findIndex(course => course._id.toString() === courseId);
+  if (index === -1) {
+    throw new Error("Course not found in card");
+  }
+  const removedCourse = card.courses.splice(index, 1)[0];
+  card.totalPrice -= removedCourse.price;
+  await card.save();
+  return card;
+};
+
+const Card = mongoose.model('Card', cardSchema);
 
 module.exports = Card;
-
