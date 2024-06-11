@@ -14,7 +14,8 @@ router.post('/', async (req, res) => {
         title: req.body.title,
         price: req.body.price, 
         img: req.body.img,
-        description: req.body.description // Добавляем описание курса
+        description: req.body.description, // Добавляем описание курса
+        category: req.body.category // Добавляем категорию курса
     });
     try { 
         await course.save();
@@ -23,6 +24,7 @@ router.post('/', async (req, res) => {
         console.log(e)
     }
 });
+
 
 module.exports = router;
 

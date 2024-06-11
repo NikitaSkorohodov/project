@@ -18,18 +18,25 @@ router.get('/', async (req, res) => {
 });
 
 // Search route
+// Search route
 router.get('/search', async (req, res) => {
   try {
     const searchTerm = req.query.q;
+    const category = req.query.category; // Добавляем получение категории из запроса
     if (!searchTerm || typeof searchTerm !== 'string') {
       throw new Error('Invalid search term');
     }
-    const courses = await Course.find({
+    let query = {
       $or: [
         { title: { $regex: searchTerm, $options: 'i' } },
         { description: { $regex: searchTerm, $options: 'i' } }
       ]
-    });
+    };
+    // Если указана категория, добавляем ее в поиск
+    if (category) {
+      query.category = category;
+    }
+    const courses = await Course.find(query);
     res.render('search', {
       title: '',
       isCourses: true,
@@ -40,6 +47,8 @@ router.get('/search', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
+
 
 // GET /courses/:id/edit - страница редактирования курса
 router.get('/:id/edit', async (req, res) => {

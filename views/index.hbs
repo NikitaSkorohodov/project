@@ -18,13 +18,12 @@
     object-fit: cover;
 }
 .row {
-    margin-left: 30px; /* Добавляем отступ слева */
+    margin-left: 30px; 
 }
+</style>
+<h1>{{__ 'Welcome'}}</h1>
 
-
-</style><h1>Welcome</h1>
-
-<p>Only the best technology is here</p>
+<p>{{__ 'Only the best technology is here'}}</p>
 <div class="carousel-container">
   <button class="prev" onclick="plusSlides(-1)">&#10094;</button>
   <div class="carousel">
@@ -58,20 +57,20 @@ function showSlides(n) {
   slides[slideIndex-1].style.display = "block";
 }
 
-// Добавляем автоматическую прокрутку каждые 3 секунды
+// Add automatic scrolling every 3 seconds
 let slideInterval = setInterval(function() { plusSlides(1); }, 3000);
 
-// При наведении на слайдер останавливаем автоматическую прокрутку
+// Stop automatic scrolling when hovering over the slider
 document.querySelector('.carousel-container').addEventListener('mouseenter', function() {
     clearInterval(slideInterval);
 });
 
-// При уходе с слайдера возобновляем автоматическую прокрутку
+// Resume automatic scrolling when leaving the slider
 document.querySelector('.carousel-container').addEventListener('mouseleave', function() {
     slideInterval = setInterval(function() { plusSlides(1); }, 3000);
 });
 </script>
-<h2>the newest technology!</h2>
+<h2>{{__ 'the newest technology!'}}</h2>
 {{#if courses.length}}
   <div class="row">
     {{#each courses}}
@@ -85,11 +84,11 @@ document.querySelector('.carousel-container').addEventListener('mouseleave', fun
             <p class="price">{{price}}</p>
           </div>
           <div class="card-action actions">
-            <a href="/courses/{{id}}" target="_blank">more details</a>
+            <a href="/courses/{{id}}" target="_blank">{{__ 'more details'}}</a>
             
             <form action="/card/add" method="POST">
               <input type="hidden" name="id" value="{{id}}">
-              <button type="submit" class="btn btn-primary">Buy</button>
+              <button type="submit" class="btn btn-primary">{{__ 'Buy'}}</button>
             </form>
           </div>
         </div>
@@ -100,5 +99,5 @@ document.querySelector('.carousel-container').addEventListener('mouseleave', fun
     {{/each}}
   </div>
 {{else}}
-  <p>This technology is not yet available</p>
+  <p>{{__ 'This technology is not yet available'}}</p>
 {{/if}}

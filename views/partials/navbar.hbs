@@ -1,45 +1,46 @@
 <nav class="nav2">
   <div class="nav-wrapper">
     <a href="/" class="brand-logo" style="margin-right: 20px; display: flex; align-items: center;">
-      <img src="https://static.vecteezy.com/system/resources/previews/023/961/503/non_2x/book-logo-template-design-education-icon-sign-and-symbol-vector.jpg" alt="Логотип приложения курсов" style="width: 50px; height: 50px; border-radius: 50%; margin-left: 20px; margin-bottom: -100px;">
+      <img src="https://static.vecteezy.com/system/resources/previews/023/961/503/non_2x/book-logo-template-design-education-icon-sign-and-symbol-vector.jpg" alt="App Logo" style="width: 50px; height: 50px; border-radius: 50%; margin-left: 20px;">
     </a>
-
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li>
         <a href="http://localhost:3000/courses/search?q=JavaScript" class="circle-search" style="display: flex; align-items: center;">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/VisualEditor_-_Icon_-_Search-big_-_white.svg/1200px-VisualEditor_-_Icon_-_Search-big_-_white.svg.png" alt="Profile" style="width: 50px; height: 50px; border-radius: 50%; margin-bottom: -100px;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/VisualEditor_-_Icon_-_Search-big_-_white.svg/1200px-VisualEditor_-_Icon_-_Search-big_-_white.svg.png" alt="Search" style="width: 50px; height: 50px; border-radius: 50%;">
         </a>
       </li>
       {{#if isHome}}
-      <li class="active"><a href="/">MAIN</a></li>
+      <li class="active"><a href="/">{{__ 'MAIN'}}</a></li>
       {{else}}
-      <li><a href="/">MAIN</a></li>
+      <li><a href="/">{{__ 'MAIN'}}</a></li>
       {{/if}}
-      
       {{#if isCourses}}
-      <li class="active"><a href="/courses">PRODUCTS</a></li>
+      <li class="active"><a href="/courses">{{__ 'PRODUCTS'}}</a></li>
       {{else}}
-      <li><a href="/courses">PRODUCTS</a></li>
+      <li><a href="/courses">{{__ 'PRODUCTS'}}</a></li>
       {{/if}}
-
       {{#if isAdd}}
-      <li class="active"><a href="/add">ADD PRODUCTS</a></li>
+      <li class="active"><a href="/add">{{__ 'ADD PRODUCTS'}}</a></li>
       {{else}}
-      <li><a href="/add">ADD PRODUCTS</a></li>
+      <li><a href="/add">{{__ 'ADD PRODUCTS'}}</a></li>
       {{/if}}
-      
       {{#if isCard}}
-      <li class="active"><a href="/card">CARD</a></li>
+      <li class="active"><a href="/card">{{__ 'CARD'}}</a></li>
       {{else}}
-      <li><a href="/card">CARD</a></li>
+      <li><a href="/card">{{__ 'CARD'}}</a></li>
       {{/if}}
-
-      <!-- Добавляем круглую картинку -->
+      <!-- Language Switcher -->
       <li>
-        <a href="courses/fr" class="circle-img" style="display: flex; align-items: center;">
-          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARMAAAC3CAMAAAAGjUrGAAAAFVBMVEX///8AJlTOESYAGU16gpXefILNABnwlnA6AAAA/klEQVR4nO3QSQ0AIAADsHH6l4yKPUhaCc2oWTs9586aOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHixIkTJ06cOHHy4ckD5KrN4eD2boIAAAAASUVORK5CYII=" alt="Profile" style="width: 50px; height: 50px; border-radius: 50%; margin-bottom: -100px;">
+        <a href="/?lang=en" class="circle-img" style="display: flex; align-items: center;">
+          <img src="https://s2.qwant.com/thumbr/474x237/e/b/5eb6584fba7b7c72464b9658ade58d510f27222e1a63b565599c39596dc274/th.jpg?u=https%3A%2F%2Ftse.mm.bing.net%2Fth%3Fid%3DOIP.yuFjx7jkfs44XcVdsQ8c5wHaDt%26pid%3DApi&q=0&b=1&p=0&a=0" alt="English" style="width: 50px; height: 50px; border-radius: 50%;">
+        </a>
+      </li>
+      <li>
+        <a href="/?lang=ru" class="circle-img" style="display: flex; align-items: center;">
+          <img src="https://upload.wikimedia.org/wikipedia/en/f/f3/Flag_of_Russia.svg" alt="Russian" style="width: 50px; height: 50px; border-radius: 50%;">
         </a>
       </li>
     </ul>
   </div>
 </nav>
+

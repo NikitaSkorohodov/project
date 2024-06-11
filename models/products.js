@@ -16,9 +16,14 @@ const courseSchema = new Schema({
   description: {
     type: String,
     required: true
+  },
+  category: {
+    type: String,
+    required: true
   }
 });
 
 module.exports = model('products', courseSchema);
+
 
 

@@ -1,28 +1,46 @@
-<h1>Добавить курс</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{__ 'add_course'}}</title>
+  
+</head>
+<body>
+  <h1>{{__ 'add_course'}}</h1>
 
-<form action="/add" method="POST">
+  <form action="/add" method="POST">
     <div class="input-field">
-        <input id="title" name="title" type="text" class="validate" required>
-        <label for="title">Name of the technique</label>
-        <span class="helper-text" data-error="введите название"></span>
+      <input id="title" name="title" type="text" class="validate" required>
+      <label for="title">{{__ 'title'}}</label>
+      <span class="helper-text" data-error="Enter title"></span>
     </div>
 
     <div class="input-field">
-        <input id="price" name="price" type="number" class="validate" required min="1">
-        <label for="price">Equipment price</label>
-        <span class="helper-text" data-error="введите цену"></span>
+      <input id="price" name="price" type="number" class="validate" required min="1">
+      <label for="price">{{__ 'price'}}</label>
+      <span class="helper-text" data-error="Enter price"></span>
     </div>
 
     <div class="input-field">
-        <input id="img" name="img" type="text" class="validate" required>
-        <label for="img">URL of the image</label>
-        <span class="helper-text" data-error="url картинки"></span>
+      <input id="img" name="img" type="text" class="validate" required>
+      <label for="img">{{__ 'image_url'}}</label>
+      <span class="helper-text" data-error="Enter image URL"></span>
     </div>
-    
+
     <div class="input-field">
-        <textarea id="description" name="description" class="materialize-textarea"></textarea>
-        <label for="description">Technique Description</label>
+      <textarea id="description" name="description" class="materialize-textarea"></textarea>
+      <label for="description">{{__ 'description'}}</label>
     </div>
-    
-    <button class="btn btn-primary">Add a course</button>
-</form>
+
+    <div class="input-field">
+      <input id="category" name="category" type="text" class="validate" required>
+      <label for="category">{{__ 'category'}}</label>
+      <span class="helper-text" data-error="Enter category"></span>
+    </div>
+
+    <button class="btn btn-primary">{{__ 'add_button'}}</button>
+  </form>
+</body>
+</html>
+
+
