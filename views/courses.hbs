@@ -1,7 +1,7 @@
 {{#if courses.length}}
   <div class="row">
     {{#each courses}}
-      <div class="col s6">
+      <div class="col s12 m6"> <!-- на маленьких экранах один элемент в строке, на средних - по два -->
         <div class="card">
           <div class="card-image">
             <img src="{{img}}" alt="{{title}}">
@@ -20,11 +20,9 @@
           </div>
         </div>
       </div>
-      {{#if @index_even}}
-        </div><div class="row">
-      {{/if}}
     {{/each}}
   </div>
 {{else}}
   <p>{{__ 'This technology is not yet available'}}</p>
 {{/if}}
+

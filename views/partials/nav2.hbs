@@ -1,0 +1,67 @@
+<style>
+        /* Стили для навбара */
+        .navbar {
+            background-color: #009688;
+            color: #fff;
+            padding: 0px;
+        }
+        
+        /* Стили для элементов навбара */
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        nav {
+    color: #fff;
+    background-color: #ee6e73;
+    width: 100%;
+    height: 100px;
+    line-height: 56px;
+}
+        
+        /* Стили для навбара, который виден только на телефоне */
+        @media only screen and (min-width: 993px) {
+            .hide-on-small {
+                display: none !important;
+            }
+        }
+    </style>
+
+
+    <!-- Навбар, видимый только на телефоне -->
+    <nav class="navbar hide-on-small">
+        <ul id="" class="">
+      <li>
+        <a href="http://localhost:3000/courses/search?q=JavaScript" class="circle-search" style="display: flex; margin-top: 30px; align-items: center;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/VisualEditor_-_Icon_-_Search-big_-_white.svg/1200px-VisualEditor_-_Icon_-_Search-big_-_white.svg.png" alt="Search" style="width: 50px; height: 50px; border-radius: 50%;">
+        </a>
+      </li>
+      {{#if isHome}}
+      <li class="active"><a href="/">{{__ 'MAIN'}}</a></li>
+      {{else}}
+      <li><a href="/">{{__ 'MAIN'}}</a></li>
+      {{/if}}
+      {{#if isCourses}}
+      <li class="active"><a href="/courses">{{__ 'PRODUCTS'}}</a></li>
+      {{else}}
+      <li><a href="/courses">{{__ 'PRODUCTS'}}</a></li>
+      {{/if}}
+      {{#if isCard}}
+      <li class="active"><a href="/card">{{__ 'CARD'}}</a></li>
+      {{else}}
+      <li><a href="/card">{{__ 'CARD'}}</a></li>
+      {{/if}}
+      <!-- Language Switcher -->
+      <li>
+        <a href="/?lang=en">
+          English
+        </a>
+      </li>
+      <li>
+        <a href="/?lang=ru" >
+          Russian
+        </a>
+      </li>
+    </ul>
+    </nav>
