@@ -25,9 +25,9 @@
         -webkit-overflow-scrolling: touch; /* Добавлено для адаптации под мобильные устройства */
     }
     .carousel-slide {
-        flex: 0 0 auto; /* Добавлено для адаптации под мобильные устройства */
-        scroll-snap-align: start; /* Добавлено для адаптации под мобильные устройства */
-        width: 100%; /* Добавлено для адаптации под мобильные устройства */
+        flex: 0 0 auto; 
+        scroll-snap-align: start; 
+        width: 100%; 
     }
 </style>
 
@@ -84,7 +84,7 @@ document.querySelector('.carousel-container').addEventListener('mouseleave', fun
 {{#if courses.length}}
   <div class="row">
     {{#each courses}}
-      <div class="col s6">
+      <div class="col s12 m6"> <!-- на маленьких экранах один элемент в строке, на средних - по два -->
         <div class="card">
           <div class="card-image">
             <img src="{{img}}" alt="{{title}}">
@@ -95,7 +95,7 @@ document.querySelector('.carousel-container').addEventListener('mouseleave', fun
           </div>
           <div class="card-action actions">
             <a href="/courses/{{id}}" target="_blank">{{__ 'more details'}}</a>
-            
+            <a href="/courses/{{id}}/edit?allow=true">{{__ 'Edit'}}</a>
             <form action="/card/add" method="POST">
               <input type="hidden" name="id" value="{{id}}">
               <button type="submit" class="btn btn-primary">{{__ 'Buy'}}</button>
@@ -103,9 +103,6 @@ document.querySelector('.carousel-container').addEventListener('mouseleave', fun
           </div>
         </div>
       </div>
-      {{#if @index_even}}
-        </div><div class="row">
-      {{/if}}
     {{/each}}
   </div>
 {{else}}
