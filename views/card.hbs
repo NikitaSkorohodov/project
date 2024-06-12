@@ -2,43 +2,96 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Код с перенаправлением</title>
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      width: 80%;
+      margin: 0 auto;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 15px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .delete-button {
+      background-color: #f44336;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+    }
+    .delete-button:hover {
+      background-color: #d32f2f;
+    }
+    .total-price {
+      text-align: right;
+      font-size: 1.5em;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-  <div id="card">
-    <table>
-      <thead>
-        <tr>
-          <th>{{__ 'title'}}</th>
-          <th>{{__ 'price'}}</th>
-          <th>{{__ 'Actions'}}</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each courses}}
+  <div class="container">
+    <h1>{{__ 'card'}}</h1>
+    {{#if courses.length}}
+      <table>
+        <thead>
           <tr>
-            <td>{{this.title}}</td>
-            <td>{{this.price}}</td>
-            <td>
-              <button class="btn btm-small js-remove" data-id="{{this._id}}">{{__ 'delete'}}</button>
-              
-            </td>
+            <th>{{__ 'title'}}</th>
+            <th>{{__ 'price'}}</th>
+            <th>{{__ 'Actions'}}</th>
           </tr>
-        {{/each}}
-      </tbody>
-    </table>
-    <p><strong>{{__ 'Total Price'}}:</strong> <span class="price">{{totalPrice}}</span></p>
+        </thead>
+        <tbody>
+          {{#each courses}}
+            <tr>
+              <td>{{this.title}}</td>
+              <td>{{this.price}} €.</td>
+              <td>
+                <button class="delete-button" data-id="{{this._id}}">Удалить</button>
+              </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      <div class="total-price">{{__ 'price'}} {{totalPrice}} €.</div>
+    {{else}}
+      <p>{{__ 'Cart is empty'}}</p>
+    {{/if}}
   </div>
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     $(document).ready(function() {
-      $('.js-remove').click(function(event) {
-
-        var courseId = $(this).data('id');
-        window.location.href = 'http://localhost:3000/card';
-
+      $('.delete-button').on('click', function() {
+        const courseId = $(this).data('id');
+        $.ajax({
+          url: '/card/remove/' + courseId,
+          type: 'DELETE',
+          success: function(result) {
+            location.reload();
+          },
+          error: function(err) {
+            console.error('Error removing course from card:', err);
+          }
+        });
       });
     });
   </script>
